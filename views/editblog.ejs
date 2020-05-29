@@ -1,0 +1,29 @@
+<%- include("partials/header") %> 
+
+  <section id="formContainerBox" class="ui very padded">
+    <form id="formContainerForm" class="ui form" action="/blogs/<%= foundPost.id %>?_method=PUT" method="POST">
+      <div class="field">
+        <h3>You are editing the post "<strong><%= foundPost.title %></strong>"</h3>
+      </div></br>
+      <div class="field required">
+        <label for="Post Title"">Post Title</label>
+        <input type="text" maxlength="200" id="Post Title" name="blog[title]" placeholder="Post Title" autocomplete="off" value="<%= foundPost.title %>" required>
+      </div>
+      <div class="field required">
+        <label for="Image">Image</label>
+        <input type="text" id="Image" name="blog[image]" placeholder="Image URL" autocomplete="off" value="<%= foundPost.image %>" required>
+      </div>
+      <div class="field required">
+        <label for="details">Post Details</label>
+        <textarea id="details" name="blog[details]" placeholder="Details" required><%= foundPost.body %></textarea></textarea>
+      </div>
+      <div class="ui info message">
+        <div class="header">
+          Want to separate paragraphs? wrap your paragraph inside the HTML p tag like this:	&lt;p&gt; paragraph here 	&lt;/p&gt;
+        </div>
+      </div>
+      <button class="ui positive basic button" type="submit">Update Post</button>
+    </form>
+  </section>
+
+<%- include("partials/footer") %>

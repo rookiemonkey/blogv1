@@ -1,0 +1,29 @@
+<%- include("partials/header") %>
+
+<section id="formContainerBox" class="ui very padded">
+  <form id="formContainerForm" class="ui form" action="/blogs" method="POST">
+    <div class="field">
+      <h1>Create new blog post</h1>
+    </div></br>
+    <div class="field">
+      <label for="Post Title"">Post Title</label>
+      <input type="text" maxlength="200" id="Post Title" name="blog[title]" placeholder="Post Title" autocomplete="off" required>
+    </div>
+    <div class="field">
+      <label for="Image">Image</label>
+      <input type="text" id="Image" name="blog[image]" placeholder="Image URL" autocomplete="off" required>
+    </div>
+    <div class="field">
+      <label for="details">Post Details</label>
+      <textarea id="details" name="blog[details]" placeholder="Details" required></textarea>
+    </div>
+    <div class="ui info message">
+      <div class="header">
+        Want to separate paragraphs? wrap your paragraph inside the HTML p tag like this:	&lt;p&gt; paragraph here 	&lt;/p&gt;
+      </div>
+    </div>
+    <button class="ui positive basic button" type="submit">Create Post</button>
+  </form>
+</section>
+
+<%- include("partials/footer") %>

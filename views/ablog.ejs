@@ -1,0 +1,24 @@
+<%- include("partials/header") %>
+
+<section id="viewedPostContainer" class="ui very padded segment">
+    <!-- <p><%= // foundPost.body %>
+    changing this from %= to %- means that any text passed to will be evaluated as code
+    allowing user to use HTML tags to format their inputs however, security is at risk
+    they case run javascript using script tags
+    see your bookmark on colts course section 31 </p> -->
+    <div class="ui segment">
+        <h1><strong>"<%= foundPost.title %>"</strong></h1>
+        <h3><em><%= foundPost.created.toDateString() %></em></h3>
+    </div>
+    <img class="ui medium rounded left floated image" src="<%= foundPost.image  %>" alt="<%= foundPost.title %>">
+    <p><%- foundPost.body %></p>
+    
+    <div id="buttonsContainer" >
+        <form action="/blogs/<%= foundPost.id %>?_method=DELETE" method="POST">
+            <button class="ui negative basic button">Delete</button>
+        </form>
+        <a href="/blogs/<%= foundPost.id %>/edit"><button class="ui primary basic button">Edit</button></a>
+    </div>
+</section>
+
+<%- include("partials/footer") %>

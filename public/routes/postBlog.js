@@ -22,12 +22,7 @@ router.post("/blogs/new", (req,res) => {
         image: req.body.blog.image,
         body: sanitizedDetails
     }, (err, newblog) => {
-        if (err) {
-            console.error(err);
-            res.redirect("/");
-        } else {
-            res.redirect("/");
-        };
+        err ? console.error(err) : res.redirect('/')
     });
 });
 

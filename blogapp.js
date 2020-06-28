@@ -23,41 +23,7 @@ app.use(require('./public/routes/getBlogs'));   // /blogs
 app.use(require('./public/routes/postBlog'));   // /blogs/new -- w/ form
 app.use(require('./public/routes/getBlog'));    // /blogs/:id
 app.use(require('./public/routes/updateBlog')); // /blogs/edit/:id - w/ form
-
-// // EDIT ROUTE partner with UPDATE ROUTE
-// app.get("/blogs/:id/edit", (req, res) => {
-//     Post.findById(req.params.id, (err, foundPost) => {
-//         if(err) {
-//             console.error(err);
-//         } else {
-//             res.render("editblog", {foundPost: foundPost});
-//         }
-//     });
-// });
-
-
-// // UPDATE ROUTE (partner with EDIT ROUTE) with PUT REQUEST
-// app.put("/blogs/:id", (req, res) => {
-//     let sanitizedDetails = req.sanitize(req.body.blog.details);
-//     let sanitizedTitle = req.sanitize(req.body.blog.title);
-//     let updates = { title: sanitizedTitle, image: req.body.blog.image, body: sanitizedDetails }
-//     Post.findByIdAndUpdate(req.params.id, updates, (err, updatedPost) => {
-//         if (err) {
-//             console.error(err)
-//         } else {
-//             res.redirect(`/blogs/${req.params.id}`)
-//         }
-//     });
-// });
-
-
-// DELETE ROUTE
-app.delete("/blogs/:id", (req, res) => {
-    Post.findByIdAndDelete(req.params.id, (err) => {
-        err ? console.log(err) : res.redirect("/");
-    });
-});
-
+app.use(require('./public/routes/deleteBlog')); // /blogs/delete/:id
 
 // =============================================
 // SERVER

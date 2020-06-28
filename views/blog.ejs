@@ -14,7 +14,7 @@
     <p><%- foundPost.body %></p>
 
     <div id="buttonsContainer" >
-        <form action="/blogs/<%= foundPost.id %>?_method=DELETE" method="POST">
+        <form action="/blogs/delete/<%= foundPost.id %>?_method=DELETE" method="POST">
             <button class="ui negative basic button">Delete</button>
         </form>
         <a href="/blogs/edit/<%= foundPost.id %>"><button class="ui primary basic button">Edit</button></a>

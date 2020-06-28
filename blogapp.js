@@ -10,65 +10,41 @@ const methodOverride= require("method-override");
 const expressSanitizer     = require("express-sanitizer");
 
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/views"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 
-mongoose.connect(process.env.DBURL, {useNewUrlParser: true});
-mongoose.connection.on("error", () => {console.log("something went wrong upon connecting to database")});
-mongoose.connection.on("open", () => {console.log("established connection to database. TIMESTAMP: ", Date())});
-
-const postSchema = mongoose.Schema({
-    title: String,
-    image: String,
-    body: String,
-    created: {type: Date, default: Date()}
-});
-
-const Post = mongoose.model("Post", postSchema);
-
 // =============================================
 // RESTFUL ROUTES
 // =============================================
+app.use(require('./public/routes/getBlogs'));
+app.use(require('./public/routes/postBlog'));
 
-// INDEX ROUTE - shows all
-app.get("/", (req,res) => {
-    res.redirect("/blogs");
-});
-
-
-// show all the blogpost
-app.get("/blogs", (req,res) => {
-    Post.find({}, (err, foundBlogs) => {
-        err ? console.error(err) : res.render("index", {blogs: foundBlogs});
-    });
-});
+// // NEW ROUTE - shows a form to add a new blog
+// app.get("/blogs/new", (req,res) => {
+//     res.render("newBlog");
+// });
 
 
-// NEW ROUTE - shows a form to add a new blog
-app.get("/blogs/new", (req,res) => {
-    res.render("newBlog");
-});
-
-
-// CREATE ROUTE - doesnt render anything, only process infos then redirect
-app.post("/blogs", (req,res) => {
-    let sanitizedTitle = req.sanitize(req.body.blog.title);
-    let sanitizedDetails = req.sanitize(req.body.blog.details);
-    Post.create({
-        title: sanitizedTitle,
-        image: req.body.blog.image,
-        body: sanitizedDetails
-    }, (err, newblog) => {
-        if (err) {
-            console.error(err);
-            res.redirect("/");
-        } else {
-            res.redirect("/");
-        };
-    });
-});
+// // CREATE ROUTE - doesnt render anything, only process infos then redirect
+// app.post("/blogs", (req,res) => {
+//     let sanitizedTitle = req.sanitize(req.body.blog.title);
+//     let sanitizedDetails = req.sanitize(req.body.blog.details);
+//     Post.create({
+//         title: sanitizedTitle,
+//         image: req.body.blog.image,
+//         body: sanitizedDetails
+//     }, (err, newblog) => {
+//         if (err) {
+//             console.error(err);
+//             res.redirect("/");
+//         } else {
+//             res.redirect("/");
+//         };
+//     });
+// });
 
 
 // SHOW ROUTE

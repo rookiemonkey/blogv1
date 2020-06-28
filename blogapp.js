@@ -1,18 +1,7 @@
-/**
- * KNOW ISSUES
- * ----- <p>tags shows on preview on index page
- * 
- * 
- * 
- * FUTURE IMPROVEMENTS
- * ----- should only show first 10 post then next page
- */
-
-
-
 // =============================================
 // DEPENDENCIES
 // =============================================
+require('dotenv').config();
 const express       = require("express");
 const app           = express();
 const bodyParser    = require("body-parser");
@@ -26,33 +15,30 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 
-mongoose.connect("mongodb://localhost/blogpostapp", {useNewUrlParser: true});
+mongoose.connect(process.env.DBURL, {useNewUrlParser: true});
 mongoose.connection.on("error", () => {console.log("something went wrong upon connecting to database")});
-mongoose.connection.on("open", () => {console.log("established Connection to database. TIMESTAMP: ", Date())});
+mongoose.connection.on("open", () => {console.log("established connection to database. TIMESTAMP: ", Date())});
 
-let postSchema = mongoose.Schema({
+const postSchema = mongoose.Schema({
     title: String,
     image: String,
     body: String,
     created: {type: Date, default: Date()}
 });
 
-let Post = mongoose.model("Post", postSchema);
+const Post = mongoose.model("Post", postSchema);
 
 // =============================================
 // RESTFUL ROUTES
 // =============================================
 
-// INDEX ROUTE - shows all 
-// the index page redirects it the to the /blog URL
-// this is the RESTful convention, because if we render already page under "/" route
-// URL shows nothing but the root .. so we redirect it instead :)
+// INDEX ROUTE - shows all
 app.get("/", (req,res) => {
     res.redirect("/blogs");
 });
 
 
-// show all the blogpost 
+// show all the blogpost
 app.get("/blogs", (req,res) => {
     Post.find({}, (err, foundBlogs) => {
         err ? console.error(err) : res.render("index", {blogs: foundBlogs});
@@ -112,7 +98,6 @@ app.get("/blogs/:id/edit", (req, res) => {
 
 // UPDATE ROUTE (partner with EDIT ROUTE) with PUT REQUEST
 app.put("/blogs/:id", (req, res) => {
-    // res.send("this is the PUT route"); // this is working ok
     let sanitizedDetails = req.sanitize(req.body.blog.details);
     let sanitizedTitle = req.sanitize(req.body.blog.title);
     let updates = { title: sanitizedTitle, image: req.body.blog.image, body: sanitizedDetails }
@@ -121,14 +106,13 @@ app.put("/blogs/:id", (req, res) => {
             console.error(err)
         } else {
             res.redirect(`/blogs/${req.params.id}`)
-        }   
+        }
     });
 });
 
 
 // DELETE ROUTE
 app.delete("/blogs/:id", (req, res) => {
-    // res.send("DELETING THE DATA") // this is working ok
     Post.findByIdAndDelete(req.params.id, (err) => {
         err ? console.log(err) : res.redirect("/");
     });
@@ -138,6 +122,10 @@ app.delete("/blogs/:id", (req, res) => {
 // =============================================
 // SERVER
 // =============================================
-app.listen("8001", () => {
-    console.log("SERVER HAS STARTED AT http://localhost:8001. TIMESTAMP: ", Date());
+app.listen(8001 || process.env.PORT, () => {
+    if (!process.env.PORT) {
+        console.log("SERVER HAS STARTED AT http://localhost:8001. TIMESTAMP: ", Date());
+    } else {
+        console.log("SERVER STARTED AT HEROKU. TIMESTAMP: ", Date());
+    }
 });

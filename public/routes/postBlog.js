@@ -1,20 +1,20 @@
 // =============================================
 // DEPENDENCIES
 // =============================================
-const express       = require("express");
-const router        = express();
-const database      = require("../schema");
-const Post          = database.Post;
+const express = require("express");
+const router = express();
+const database = require("../schema");
+const Post = database.Post;
 
 
 // =============================================
 // CREATE - post a blog
 // =============================================
-router.get("/blogs/new", (req,res) => {
+router.get("/blogs/new", (req, res) => {
     res.render("postBlog");
 });
 
-router.post("/blogs/new", (req,res) => {
+router.post("/blogs/new", (req, res) => {
     let sanitizedTitle = req.sanitize(req.body.blog.title);
     let sanitizedDetails = req.sanitize(req.body.blog.details);
     Post.create({

@@ -8,12 +8,12 @@
     see your bookmark on colts course section 31 </p> -->
     <div class="ui segment">
         <h1><strong>"<%= foundPost.title %>"</strong></h1>
-        <h3><em><%= foundPost.created.toDateString() %></em></h3>
+        <h3><em><%= foundPost.created.toDateString() %> <%= moment(foundPost.created).fromNow() %> </em></h3>
     </div>
     <img class="ui medium rounded left floated image" src="<%= foundPost.image  %>" alt="<%= foundPost.title %>">
     <p><%- foundPost.body %></p>
 
-    <div id="buttonsContainer" >
+    <div id="buttonsContainer">
         <form action="/blogs/delete/<%= foundPost.id %>?_method=DELETE" method="POST">
             <button class="ui negative basic button">Delete</button>
         </form>

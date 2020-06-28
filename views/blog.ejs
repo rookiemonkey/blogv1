@@ -12,12 +12,12 @@
     </div>
     <img class="ui medium rounded left floated image" src="<%= foundPost.image  %>" alt="<%= foundPost.title %>">
     <p><%- foundPost.body %></p>
-    
+
     <div id="buttonsContainer" >
         <form action="/blogs/<%= foundPost.id %>?_method=DELETE" method="POST">
             <button class="ui negative basic button">Delete</button>
         </form>
-        <a href="/blogs/<%= foundPost.id %>/edit"><button class="ui primary basic button">Edit</button></a>
+        <a href="/blogs/edit/<%= foundPost.id %>"><button class="ui primary basic button">Edit</button></a>
     </div>
 </section>
 

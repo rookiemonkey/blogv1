@@ -11,7 +11,7 @@ const Post          = database.Post;
 // CREATE - post a blog
 // =============================================
 router.get("/blogs/new", (req,res) => {
-    res.render("newBlog");
+    res.render("postBlog");
 });
 
 router.post("/blogs/new", (req,res) => {

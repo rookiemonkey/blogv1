@@ -21,44 +21,7 @@ app.use(expressSanitizer());
 // =============================================
 app.use(require('./public/routes/getBlogs'));
 app.use(require('./public/routes/postBlog'));
-
-// // NEW ROUTE - shows a form to add a new blog
-// app.get("/blogs/new", (req,res) => {
-//     res.render("newBlog");
-// });
-
-
-// // CREATE ROUTE - doesnt render anything, only process infos then redirect
-// app.post("/blogs", (req,res) => {
-//     let sanitizedTitle = req.sanitize(req.body.blog.title);
-//     let sanitizedDetails = req.sanitize(req.body.blog.details);
-//     Post.create({
-//         title: sanitizedTitle,
-//         image: req.body.blog.image,
-//         body: sanitizedDetails
-//     }, (err, newblog) => {
-//         if (err) {
-//             console.error(err);
-//             res.redirect("/");
-//         } else {
-//             res.redirect("/");
-//         };
-//     });
-// });
-
-
-// SHOW ROUTE
-app.get("/blogs/:id", (req, res) => {
-    Post.findById({ _id: req.params.id }, (err, foundPost) => {
-        if(err) {
-            console.error(err);
-            res.redirect("/");
-        } else {
-            res.render("ablog", {foundPost: foundPost});
-        }
-    });
-});
-
+app.use(require('./public/routes/getBlog'));
 
 // EDIT ROUTE partner with UPDATE ROUTE
 app.get("/blogs/:id/edit", (req, res) => {

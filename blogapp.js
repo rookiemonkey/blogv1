@@ -28,7 +28,7 @@ app.use(require('./public/routes/deleteBlog')); // /blogs/delete/:id
 // =============================================
 // SERVER
 // =============================================
-app.listen(8001 || process.env.PORT, () => {
+app.listen(process.env.PORT || 8001, () => {
     if (!process.env.PORT) {
         console.log("SERVER HAS STARTED AT http://localhost:8001. TIMESTAMP: ", Date());
     } else {

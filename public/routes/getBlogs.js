@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
 router.get('/blogs', (req, res) => {
     Post.find({}, (err, foundBlogs) => {
-        err ? console.error(err) : res.render("index", {blogs: foundBlogs});
+        err ? console.error(err) : res.render("getBlogs", {blogs: foundBlogs});
     });
 });
 

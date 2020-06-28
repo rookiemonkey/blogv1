@@ -11,7 +11,7 @@ const Post          = database.Post;
 // =============================================
 router.get("/blogs/:id", (req, res) => {
     Post.findById({ _id: req.params.id }, (err, foundPost) => {
-        err ? console.error(err) : res.render("blog", {foundPost: foundPost});
+        err ? console.error(err) : res.render("getBlog", {foundPost: foundPost});
     });
 });
 

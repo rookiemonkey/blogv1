@@ -11,8 +11,11 @@ const Post          = database.Post;
 // =============================================
 // DELETE ROUTE
 router.delete("/blogs/delete/:id", (req, res) => {
-    Post.findByIdAndDelete(req.params.id, (err) => {
-        err ? console.log(err) : req.flash('info', 'A post was deleted'); res.redirect("/blogs");
+    Post.findById(req.params.id, (err, foundPost) => {
+        foundPost.remove();
+        err
+            ? console.log(err)
+            : req.flash('info', `${foundPost.title} was deleted successfully`); res.redirect("/blogs");
     });
 });
 

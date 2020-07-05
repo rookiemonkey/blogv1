@@ -22,7 +22,9 @@ router.post("/blogs/new", (req, res) => {
         image: req.body.blog.image,
         body: sanitizedDetails
     }, (err, newblog) => {
-        err ? console.error(err) : res.redirect('/')
+        err
+            ? console.log(err)
+            : req.flash('info', `${sanitizedTitle} was posted successfully`); res.redirect("/blogs");
     });
 });
 

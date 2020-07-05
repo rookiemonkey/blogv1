@@ -8,7 +8,6 @@ const moment = require("moment");
 const Post = database.Post;
 const expressSanitizer = require("express-sanitizer");
 
-
 // =============================================
 // INDEX - get all blogs
 // =============================================
@@ -18,7 +17,12 @@ router.get('/', (req, res) => {
 
 router.get('/blogs', (req, res) => {
     Post.find({}, (err, foundBlogs) => {
-        err ? console.error(err) : res.render("getBlogs", { blogs: foundBlogs, moment: moment });
+        if(err) {
+            req.flash('error', 'Something went wrong upon getting all the post from the databases');
+            res.redirect("/blogs");
+        } else {
+            res.render("getBlogs", { blogs: foundBlogs, moment: moment });
+        }
     });
 });
 

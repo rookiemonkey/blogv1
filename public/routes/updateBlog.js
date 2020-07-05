@@ -21,9 +21,13 @@ router.put("/blogs/edit/:id", (req, res) => {
     let sanitizedTitle = req.sanitize(req.body.blog.title);
     let updates = { title: sanitizedTitle, image: req.body.blog.image, body: sanitizedDetails }
     Post.findByIdAndUpdate(req.params.id, updates, (err, updatedPost) => {
-        err
-            ? console.log(err)
-            : req.flash('info', `${sanitizedTitle} was posted successfully`); res.redirect("/blogs");
+        if (err) {
+            req.flash('error', 'Something went wrong upon updating the post. Please try again later');
+            res.redirect(`/blogs/${req.params.id}`);
+        } else {
+            req.flash('info', `${sanitizedTitle} was updated successfully`);
+            res.redirect(`/blogs/${req.params.id}`);
+        }
     });
 });
 

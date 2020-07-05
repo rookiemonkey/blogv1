@@ -1,15 +1,23 @@
 <%- include("partials/header") %>
 
 <section id="blogPosts" class="ui divided items">
+
     <header>
         <h1><i class="comment outline icon"></i> /:urBlog Posts</h1>
-    </header>
 
-    <% if (info.length > 0) { %>
-        <div>
-          <div><%= info %></div>
-        </div>
-    <% } %>
+        <% if (info.length > 0) { %>
+            <div>
+                <div class="ui blue message"><%= info %></div>
+            </div>
+        <% } %>
+
+        <% if (error.length > 0) { %>
+            <div>
+                <div class="ui red message"><%= error %></div>
+            </div>
+        <% } %>
+
+    </header>
 
     <%if (blogs.length === 0) { %>
         <article class="item">

@@ -3,9 +3,17 @@
 // =============================================
 const express = require("express");
 const router = express();
+const multer = require('multer');
+const cloudinary = require('cloudinary');
 const database = require("../schema");
 const Post = database.Post;
+const setMulter = require("../helpers/setMulter");
+const setCloudinary = require("../helpers/setCloudinary");
+const toUpload = require("../helpers/toUpload");
 
+// configure multer & cloudinary
+const upload = setMulter(multer);
+cloudinary.config(setCloudinary());
 
 // =============================================
 // CREATE - post a blog
@@ -14,12 +22,13 @@ router.get("/blogs/new", (req, res) => {
     res.render("postBlog");
 });
 
-router.post("/blogs/new", (req, res) => {
-    let sanitizedTitle = req.sanitize(req.body.blog.title);
-    let sanitizedDetails = req.sanitize(req.body.blog.details);
+router.post("/blogs/new", upload.single('image'), async (req, res) => {
+    const uploaded = await toUpload(cloudinary, req).then(u => { return u.secure_url });
+    const sanitizedTitle = req.sanitize(req.body.blog.title);
+    const sanitizedDetails = req.sanitize(req.body.blog.details);
     Post.create({
         title: sanitizedTitle,
-        image: req.body.blog.image,
+        image: uploaded,
         body: sanitizedDetails
     }, (err, newblog) => {
         if(err) {
@@ -31,7 +40,6 @@ router.post("/blogs/new", (req, res) => {
         }
     });
 });
-
 
 // =============================================
 // EXPORT

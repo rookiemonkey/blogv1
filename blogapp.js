@@ -4,6 +4,9 @@
 require('dotenv').config();
 const express = require("express");
 const app = express();
+const flash = require('connect-flash');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
@@ -15,6 +18,17 @@ app.use(express.static(__dirname + "/views"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
+
+// setup flash messages
+app.use(cookieParser('keyboard cat'));
+app.use(session({ cookie: { maxAge: 60000 }}));
+app.use(flash());
+app.use( function (req, res, next) {
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
+    res.locals.info = req.flash("info");
+    next();
+})
 
 // =============================================
 // RESTFUL ROUTES

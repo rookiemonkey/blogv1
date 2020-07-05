@@ -4,6 +4,13 @@
     <header>
         <h1><i class="comment outline icon"></i> /:urBlog Posts</h1>
     </header>
+
+    <% if (info.length > 0) { %>
+        <div>
+          <div><%= info %></div>
+        </div>
+    <% } %>
+
     <%if (blogs.length === 0) { %>
         <article class="item">
             <h3>Your blog is empty</h3>

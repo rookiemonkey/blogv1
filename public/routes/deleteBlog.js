@@ -12,7 +12,7 @@ const Post          = database.Post;
 // DELETE ROUTE
 router.delete("/blogs/delete/:id", (req, res) => {
     Post.findByIdAndDelete(req.params.id, (err) => {
-        err ? console.log(err) : res.redirect("/");
+        err ? console.log(err) : req.flash('info', 'A post was deleted'); res.redirect("/blogs");
     });
 });
 

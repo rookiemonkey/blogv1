@@ -4,29 +4,35 @@
     <header>
         <h1><i class="comment outline icon"></i> /:urBlog Posts</h1>
     </header>
-    <% blogs.forEach(post => { %>
-    <article class="item">
-        <div class="image">
-            <img src="<%= post.image %>" class="ui medium rounded" alt="<%= post.title %>">
-        </div>
-        <div class="content">
-            <a class="header"><%= post.title %></a>
-            <div class="meta">
-                <span class="cinema"><%= post.created.toDateString() %>
-                    <%= moment(post.created).fromNow() %></span>
+    <%if (blogs.length === 0) { %>
+        <article class="item">
+            <h3>Your blog is empty</h3>
+        </article>
+    <% } else { %>
+        <% blogs.forEach(post => { %>
+        <article class="item">
+            <div class="image">
+                <img src="<%= post.image %>" class="ui medium rounded" alt="<%= post.title %>">
             </div>
-            <div class="description">
-                <p><%= post.body.substring(0, 150) %>...</p>
-            </div>
-            <div class="extra">
-                <div class="ui label">
-                    <a href="/blogs/<%= post._id %>">
-                        <button class="ui positive basic button">Read More</button></a>
+            <div class="content">
+                <a class="header"><%= post.title %></a>
+                <div class="meta">
+                    <span class="cinema"><%= post.created.toDateString() %>
+                        <%= moment(post.created).fromNow() %></span>
+                </div>
+                <div class="description">
+                    <p><%= post.body.substring(0, 150) %>...</p>
+                </div>
+                <div class="extra">
+                    <div class="ui label">
+                        <a href="/blogs/<%= post._id %>">
+                            <button class="ui positive basic button">Read More</button></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </article>
-    <% }) %>
+        </article>
+        <% }) %>
+    <% } %>
 </section>
 
 <%- include("partials/footer") %>

@@ -33,6 +33,25 @@ section#formContainerBox {
   margin: 10% auto; }
   section#formContainerBox form#formContainerForm {
     padding: 0 10%; }
+  section#formContainerBox #Label-Image {
+    display: flex;
+    align-items: center !important; }
+  section#formContainerBox #Image-Input,
+  section#formContainerBox #Image-File {
+    width: 100% !important;
+    height: 38px !important; }
+  section#formContainerBox #Image-File {
+    padding-bottom: 0px;
+    padding-top: 4.5px; }
+  section#formContainerBox #Update-Button,
+  section#formContainerBox #Default-Button {
+    width: 100% !important; }
+
+.show {
+  display: block !important; }
+
+.hide {
+  display: none !important; }
 
 @media screen and (min-width: 950px) {
   section#blogPosts {

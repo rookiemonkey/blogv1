@@ -1,10 +1,10 @@
 // =============================================
 // DEPENDENCIES
 // =============================================
-const express       = require("express");
-const router        = express();
-const database      = require("../schema");
-const Post          = database.Post;
+const express = require("express");
+const router = express();
+const database = require("../schema");
+const Post = database.Post;
 
 
 // =============================================
@@ -12,7 +12,7 @@ const Post          = database.Post;
 // =============================================
 router.get("/blogs/edit/:id", (req, res) => {
     Post.findById(req.params.id, (err, foundPost) => {
-        err ? console.error(err) : res.render('editBlog', {foundPost: foundPost})
+        err ? console.error(err) : res.render('editBlog', { foundPost: foundPost })
     });
 });
 

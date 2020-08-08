@@ -10,11 +10,32 @@
       <input type="text" maxlength="200" id="Post Title" name="blog[title]" placeholder="Post Title" autocomplete="off"
         value="<%= foundPost.title %>" required>
     </div>
-    <div class="field required">
-      <label for="Image">Image</label>
-      <input type="text" id="Image" name="blog[image]" placeholder="Image URL" autocomplete="off"
-        value="<%= foundPost.image %>" required>
+
+
+
+    <div class="fields required">
+      <div class="two wide inline field" id="Label-Image">
+        <label for="Image">Image</label>
+      </div>
+
+      <div class="ten wide inline field">
+        <input type="text" id="Image-Input" class='show' name="blog[image_default]" placeholder="Image URL"
+          autocomplete="off" value="<%= foundPost.image %>" disabled>
+        <input type="file" id="Image-File" class='hide' name="image" placeholder="Image URL" autocomplete="off"
+          value="iupdate mo to" required>
+      </div>
+
+      <div class="two wide inline field">
+        <button type='button' id="Default-Button" class="ui secondary button">Default</button>
+      </div>
+
+      <div class="two wide inline field">
+        <button type='button' id="Update-Button" class="ui button">Update</button>
+      </div>
     </div>
+
+
+
     <div class="field required">
       <label for="details">Post Details</label>
       <textarea id="details" name="blog[details]" placeholder="Details"
@@ -23,5 +44,31 @@
     <button class="ui positive basic button" type="submit">Update Post</button>
   </form>
 </section>
+
+
+<script>
+  const imageFileDefault = document.querySelector('#Image-Input')
+  const imageFileInput = document.querySelector('#Image-File')
+  const btn_chooseDefault = document.querySelector('#Default-Button')
+  const btn_chooseUpdate = document.querySelector('#Update-Button')
+
+  btn_chooseDefault.addEventListener('click', () => { chooseDefault() })
+  btn_chooseUpdate.addEventListener('click', () => { chooseUpdate() })
+
+  function chooseDefault() {
+    imageFileDefault.classList.remove('hide')
+    imageFileDefault.classList.add('show')
+    imageFileInput.classList.add('hide')
+    imageFileDefault.classList.remove('show')
+    imageFileInput.value = ''
+  }
+
+  function chooseUpdate() {
+    imageFileDefault.classList.remove('show')
+    imageFileDefault.classList.add('hide')
+    imageFileInput.classList.add('show')
+    imageFileInput.classList.remove('hide')
+  }
+</script>
 
 <%- include("partials/footer") %>

@@ -51,11 +51,17 @@
 
     <div class="navigation-container">
         <% if (next > 2) { %>
-        <button class="navigation-button-back">Back</button>
+        <button class="navigation-button-back ui left labeled icon button">
+            <i class="left arrow icon"></i>
+            Back
+        </button>
         <% } %>
 
         <a href="/blogs?page=<%=next%>">
-            <button class="navigation-button-next">Next</button>
+            <button class="navigation-button-next ui right labeled icon button">
+                <i class="right arrow icon"></i>
+                Next
+            </button>
         </a>
     </div>
 

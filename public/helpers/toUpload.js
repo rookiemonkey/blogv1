@@ -1,5 +1,6 @@
 const toUpload = (cloudinary, req) => {
     const promise = new Promise((resolve, reject) => {
+        if (!req.file) { reject(false) }
         cloudinary.uploader.upload(req.file.path, function (result) {
             if (!result) { reject(error) }
             else { resolve(result) }

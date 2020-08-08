@@ -1,13 +1,14 @@
 <%- include("partials/header") %>
 
 <section id="formContainerBox" class="ui very padded">
-  <form id="formContainerForm" class="ui form" action="/blogs/edit/<%= foundPost.id %>?_method=PUT" method="POST">
+  <form id="formContainerForm" class="ui form" action="/blogs/edit/<%= foundPost.id %>" method="POST"
+    enctype="multipart/form-data">
     <div class="field">
       <h3>You are editing the post "<strong><%= foundPost.title %></strong>"</h3>
     </div></br>
     <div class="field required">
       <label for="Post Title">Post Title</label>
-      <input type="text" maxlength="200" id="Post Title" name="blog[title]" placeholder="Post Title" autocomplete="off"
+      <input type="text" maxlength="200" id="Post Title" name="title" placeholder="Post Title" autocomplete="off"
         value="<%= foundPost.title %>" required>
     </div>
 
@@ -19,10 +20,9 @@
       </div>
 
       <div class="ten wide inline field">
-        <input type="text" id="Image-Input" class='show' name="blog[image_default]" placeholder="Image URL"
-          autocomplete="off" value="<%= foundPost.image %>" disabled>
-        <input type="file" id="Image-File" class='hide' name="image" placeholder="Image URL" autocomplete="off"
-          value="iupdate mo to" required>
+        <input type="text" id="Image-Input" class='show' name="image_default" autocomplete="off"
+          value="<%= foundPost.image %>">
+        <input type="file" id="Image-File" class='hide' name="image_update" placeholder="Image URL" autocomplete="off">
       </div>
 
       <div class="two wide inline field">
@@ -38,10 +38,9 @@
 
     <div class="field required">
       <label for="details">Post Details</label>
-      <textarea id="details" name="blog[details]" placeholder="Details"
-        required><%= foundPost.body %></textarea></textarea>
+      <textarea id="details" name="details" placeholder="Details" required><%= foundPost.body %></textarea>
     </div>
-    <button class="ui positive basic button" type="submit">Update Post</button>
+    <button class="ui positive basic button" type='submit'>Update Post</button>
   </form>
 </section>
 
@@ -61,6 +60,7 @@
     imageFileInput.classList.add('hide')
     imageFileDefault.classList.remove('show')
     imageFileInput.value = ''
+    imageFileInput.removeAttribute('required')
   }
 
   function chooseUpdate() {
@@ -68,6 +68,7 @@
     imageFileDefault.classList.add('hide')
     imageFileInput.classList.add('show')
     imageFileInput.classList.remove('hide')
+    imageFileInput.setAttribute('required', 'required')
   }
 </script>
 

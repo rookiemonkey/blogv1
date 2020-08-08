@@ -50,11 +50,22 @@
     <% } %>
 
     <div class="navigation-container">
+        <% if (next > 2) { %>
+        <button class="navigation-button-back">Back</button>
+        <% } %>
+
         <a href="/blogs?page=<%=next%>">
             <button class="navigation-button-next">Next</button>
         </a>
     </div>
 
 </section>
+
+<% if (next > 2) { %>
+<script>
+    const backBtn = document.querySelector('.navigation-button-back')
+    backBtn.addEventListener('click', () => { history.back() })
+</script>
+<% } %>
 
 <%- include("partials/footer") %>

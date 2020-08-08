@@ -29,8 +29,8 @@ section#viewedPostContainer {
       display: inline-block; }
 
 section#formContainerBox {
-  height: fit-content;
-  margin: 10% auto; }
+  height: 100vh;
+  margin: 5% auto; }
   section#formContainerBox form#formContainerForm {
     padding: 0 10%; }
   section#formContainerBox #Label-Image {
@@ -41,6 +41,7 @@ section#formContainerBox {
     width: 100% !important;
     height: 38px !important; }
   section#formContainerBox #Image-File {
+    padding-left: 4.5px;
     padding-bottom: 0px;
     padding-top: 4.5px; }
   section#formContainerBox #Update-Button,

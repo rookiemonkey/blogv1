@@ -6,48 +6,55 @@
         <h1><i class="comment outline icon"></i> /:urBlog Posts</h1>
 
         <% if (info.length > 0) { %>
-            <div>
-                <div class="ui blue message"><%= info %></div>
-            </div>
+        <div>
+            <div class="ui blue message"><%= info %></div>
+        </div>
         <% } %>
 
         <% if (error.length > 0) { %>
-            <div>
-                <div class="ui red message"><%= error %></div>
-            </div>
+        <div>
+            <div class="ui red message"><%= error %></div>
+        </div>
         <% } %>
 
     </header>
 
     <%if (blogs.length === 0) { %>
-        <article class="item">
-            <h3>Your blog is empty</h3>
-        </article>
+    <article class="item">
+        <h3>Your blog is empty</h3>
+    </article>
     <% } else { %>
-        <% blogs.forEach(post => { %>
-        <article class="item">
-            <div class="image">
-                <img src="<%= post.image %>" class="ui medium rounded" alt="<%= post.title %>">
+    <% blogs.forEach(post => { %>
+    <article class="item">
+        <div class="image">
+            <img src="<%= post.image %>" class="ui medium rounded" alt="<%= post.title %>">
+        </div>
+        <div class="content">
+            <a class="header"><%= post.title %></a>
+            <div class="meta">
+                <span class="cinema"><%= post.created.toDateString() %>
+                    <%= moment(post.created).fromNow() %></span>
             </div>
-            <div class="content">
-                <a class="header"><%= post.title %></a>
-                <div class="meta">
-                    <span class="cinema"><%= post.created.toDateString() %>
-                        <%= moment(post.created).fromNow() %></span>
-                </div>
-                <div class="description">
-                    <p><%= post.body.substring(0, 150) %>...</p>
-                </div>
-                <div class="extra">
-                    <div class="ui label">
-                        <a href="/blogs/<%= post._id %>">
-                            <button class="ui positive basic button">Read More</button></a>
-                    </div>
+            <div class="description">
+                <p><%= post.body.substring(0, 150) %>...</p>
+            </div>
+            <div class="extra">
+                <div class="ui label">
+                    <a href="/blogs/<%= post._id %>">
+                        <button class="ui positive basic button">Read More</button></a>
                 </div>
             </div>
-        </article>
-        <% }) %>
+        </div>
+    </article>
+    <% }) %>
     <% } %>
+
+    <div class="navigation-container">
+        <button class="navigation-button-next">
+            <a href="/blogs?page=<%=next%>">Next</a>
+        </button>
+    </div>
+
 </section>
 
 <%- include("partials/footer") %>

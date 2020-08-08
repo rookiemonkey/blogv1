@@ -15,15 +15,20 @@ router.get('/', (req, res) => {
     res.redirect("/blogs");
 });
 
-router.get('/blogs', (req, res) => {
+router.get('/blogs/:page', (req, res) => {
+    let limit = 10
+    let skip = limit * (req.params.page - 1)
+
     Post.find({}, (err, foundBlogs) => {
-        if(err) {
+        if (err) {
             req.flash('error', 'Something went wrong upon getting all the post from the databases');
             res.redirect("/blogs");
         } else {
             res.render("getBlogs", { blogs: foundBlogs, moment: moment });
         }
-    });
+    })
+        .limit(limit)
+        .skip(skip);
 });
 
 

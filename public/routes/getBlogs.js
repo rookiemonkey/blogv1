@@ -12,12 +12,13 @@ const expressSanitizer = require("express-sanitizer");
 // INDEX - get all blogs
 // =============================================
 router.get('/', (req, res) => {
-    res.redirect("/blogs");
+    res.redirect("/blogs?page=1");
 });
 
-router.get('/blogs/:page', (req, res) => {
+router.get('/blogs', (req, res) => {
+    const { page } = req.query
     let limit = 10
-    let skip = limit * (req.params.page - 1)
+    let skip = limit * (page - 1)
 
     Post.find({}, (err, foundBlogs) => {
         if (err) {

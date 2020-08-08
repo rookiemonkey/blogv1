@@ -23,10 +23,16 @@ router.get('/blogs', (req, res) => {
     Post.find({}, (err, foundBlogs) => {
         if (err) {
             req.flash('error', 'Something went wrong upon getting all the post from the databases');
-            res.redirect("/blogs?page=1");
-        } else {
-            res.render("getBlogs", { blogs: foundBlogs, moment: moment, next: parseInt(page) + 1 });
+            return res.redirect("/blogs?page=1");
         }
+
+        else if (!foundBlogs.length && parseInt(page) > 0) {
+            req.flash('error', `You've reached the last page`);
+            return res.redirect(`/blogs?page=${parseInt(page) - 1}`);
+        }
+
+        res.render("getBlogs", { blogs: foundBlogs, moment: moment, next: parseInt(page) + 1 });
+
     })
         .limit(limit)
         .skip(skip);

@@ -31,12 +31,12 @@ router.post("/blogs/new", upload.single('image'), async (req, res) => {
         image: uploaded,
         body: sanitizedDetails
     }, (err, newblog) => {
-        if(err) {
+        if (err) {
             req.flash('error', 'Something went wrong upon creating a new Post. Please try again later');
-            res.redirect("/blogs");
+            res.redirect("/blogs?page=1");
         } else {
             req.flash('info', `${sanitizedTitle} was posted successfully`);
-            res.redirect("/blogs");
+            res.redirect("/blogs?page=1");
         }
     });
 });

@@ -23,7 +23,7 @@ router.get("/blogs/edit/:id", (req, res) => {
     Post.findById(req.params.id, (err, foundPost) => {
         if (err) {
             req.flash('error', 'Something went wrong upon rendering the edit form for this post');
-            return res.redirect(`/blogs`);
+            return res.redirect(`/blogs?page=1`);
         }
 
         res.render('editBlog', { foundPost: foundPost })

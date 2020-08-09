@@ -27,9 +27,6 @@ router.get("/blogs/edit/:id", (req, res) => {
 
 router.post("/blogs/edit/:id", upload.single('image_update'), async (req, res) => {
     const imageUrl = await toUpload(cloudinary, req)
-        .then(u => u.secure_url)
-        .catch(e => e)
-
     const { details, title, image_default } = req.body;
     let sanitizedDetails = req.sanitize(details);
     let sanitizedTitle = req.sanitize(title);

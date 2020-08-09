@@ -40,6 +40,8 @@ section#formContainerBox {
   section#formContainerBox #Image-File {
     width: 100% !important;
     height: 38px !important; }
+  section#formContainerBox #Image-Input {
+    color: gray; }
   section#formContainerBox #Image-File {
     padding-left: 4.5px;
     padding-bottom: 0px;

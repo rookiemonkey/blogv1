@@ -8,7 +8,10 @@ const toUpload = (cloudinary, req) => {
     })
     promise.then(result => { return result })
     promise.catch(error => { return error })
-    return promise;
+
+    return promise
+        .then(u => u.secure_url)
+        .catch(e => e);
 }
 
 module.exports = toUpload;

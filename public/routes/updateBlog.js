@@ -21,7 +21,12 @@ cloudinary.config(setCloudinary());
 // =============================================
 router.get("/blogs/edit/:id", (req, res) => {
     Post.findById(req.params.id, (err, foundPost) => {
-        err ? console.error(err) : res.render('editBlog', { foundPost: foundPost })
+        if (err) {
+            req.flash('error', 'Something went wrong upon rendering the edit form for this post');
+            return res.redirect(`/blogs`);
+        }
+
+        res.render('editBlog', { foundPost: foundPost })
     });
 });
 

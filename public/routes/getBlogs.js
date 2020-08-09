@@ -20,6 +20,8 @@ router.get('/blogs', (req, res) => {
     let limit = 10
     let skip = limit * (parseInt(page) - 1)
 
+    if (!page || !parseInt(page)) { return res.redirect("/blogs?page=1"); }
+
     Post.find({}, (err, foundBlogs) => {
         if (err) {
             req.flash('error', 'Something went wrong upon getting all the post from the databases');

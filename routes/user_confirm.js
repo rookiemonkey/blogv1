@@ -31,9 +31,10 @@ router.get("/confirm", async (req, res) => {
         }
 
         foundUser.isEmailConfirmed = true;
+        foundUser.token = undefined;
         await foundUser.save();
 
-        req.flash('success', `Success!, Please login and start blogging`);
+        req.flash('success', `Success! Account has been confirmed. Please login and start blogging`);
         res.redirect('/login')
     }
 

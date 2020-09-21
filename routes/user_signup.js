@@ -41,7 +41,7 @@ router.post("/signup", async (req, res) => {
 
         const newUser = await User.create({ username, email, password })
 
-        const newUserToken = newUser.generateToken('dontExpire');
+        const newUserToken = await newUser.generateToken('dontExpire');
 
         await toEmail(
             email,

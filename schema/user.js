@@ -22,6 +22,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    token: {
+        type: String,
+        default: '',
+    },
     isEmailConfirmed: {
         type: Boolean,
         default: false
@@ -39,22 +43,24 @@ userSchema.pre('save', async function (next) {
 });
 
 // generate a token for a user
-userSchema.methods.generateToken = function (dontExpire) {
+userSchema.methods.generateToken = async function (dontExpire) {
     if (dontExpire) {
-        return jwt
-            .sign(
-                { _id: this._id },
-                process.env.JWT_SECRET_KEY
-            )
+        const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET_KEY)
+        this.token = token;
+        await this.save();
+        return token;
     }
 
     else {
-        return jwt
+        const token = jwt
             .sign(
                 { _id: this._id },
                 process.env.JWT_SECRET_KEY,
                 { expiresIn: process.env.JWT_EXPIRE_TIME }
-            )
+            );
+        this.token = token;
+        await this.save();
+        return token;
     }
 }
 

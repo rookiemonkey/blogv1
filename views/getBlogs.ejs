@@ -21,7 +21,11 @@
 
     <%if (blogs.length === 0) { %>
     <article class="item">
-        <h3>Your blog is empty</h3>
+        <div>
+            <div class="ui blue message">
+                <h3>Your blog is empty</h3>
+            </div>
+        </div>
     </article>
     <% } else { %>
     <% blogs.forEach(post => { %>
@@ -31,19 +35,20 @@
                 onerror="this.onerror=null;this.src='<%= errorImage %>'">
         </div>
         <div class="content">
-            <a class="header"><%= post.title %></a>
-            <div class="meta">
-                <span class="cinema"><%= post.created.toDateString() %>
-                    <%= moment(post.created).fromNow() %></span>
-            </div>
-            <div class="description">
-                <p><%= post.body.substring(0, 150) %>...</p>
+            <div>
+                <a class="header"><%= post.title %></a>
+                <div class="meta">
+                    <span class="cinema"><%= post.created.toDateString() %>
+                        <%= moment(post.created).fromNow() %></span>
+                </div>
+                <div class="description">
+                    <p><%= post.body.substring(0, 150) %>...</p>
+                </div>
             </div>
             <div class="extra">
-                <div class="ui label">
-                    <a href="/blogs/<%= post._id %>">
-                        <button class="ui positive basic button">Read More</button></a>
-                </div>
+                <a href="/blogs/<%= post._id %>">
+                    <button class="ui positive basic button">Read More</button>
+                </a>
             </div>
         </div>
     </article>

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node blogapp.js",
     "dev": "nodemon blogapp.js",
-    "sass": "node-sass public/css/style.scss public/css/style.css -w"
+    "sass": "node-sass public/css/style.scss public/css/style.css --output-style compressed -w"
   },
   "keywords": [
     "blogapp",

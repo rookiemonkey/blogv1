@@ -26,10 +26,13 @@
         onerror="this.onerror=null;this.src='<%= errorImage %>'">
     <p><%- foundPost.body %></p>
 
+    <% if(session) { %>
     <div id="buttonsContainer">
         <button class="ui negative basic button" id="modal_delete">Delete</button>
         <a href="/blogs/edit/<%= foundPost.id %>"><button class="ui primary basic button">Edit</button></a>
     </div>
+    <% } %>
+
 </section>
 
 <div class="ui basic modal">

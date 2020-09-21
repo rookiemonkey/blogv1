@@ -11,6 +11,12 @@
         </div>
         <% } %>
 
+        <% if (success.length > 0) { %>
+        <div>
+            <div class="ui positive message"><%= success %></div>
+        </div>
+        <% } %>
+
         <% if (error.length > 0) { %>
         <div>
             <div class="ui red message"><%= error %></div>

@@ -33,20 +33,22 @@ app.use(function (req, res, next) {
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     res.locals.info = req.flash("info");
+    res.locals.isLoggedIn = req.cookies.auth;
     next();
 })
 
 // =============================================
 // RESTFUL ROUTES
 // =============================================
-app.use(require('./routes/getBlogs'));   // /blogs
-app.use(require('./routes/postBlog'));   // /blogs/new -- w/ form
-app.use(require('./routes/getBlog'));    // /blogs/:id
-app.use(require('./routes/updateBlog')); // /blogs/edit/:id - w/ form
-app.use(require('./routes/deleteBlog')); // /blogs/delete/:id
-app.use(require('./routes/user_signup'));// /signup - w/ form
-app.use(require('./routes/user_login')); // /login - w/ form
-app.use(require('./routes/user_confirm'))// /confirm
+app.use(require('./routes/getBlogs'));      // /blogs
+app.use(require('./routes/postBlog'));      // /blogs/new -- w/ form
+app.use(require('./routes/getBlog'));       // /blogs/:id
+app.use(require('./routes/updateBlog'));    // /blogs/edit/:id - w/ form
+app.use(require('./routes/deleteBlog'));    // /blogs/delete/:id
+app.use(require('./routes/user_signup'));   // /signup - w/ form
+app.use(require('./routes/user_login'));    // /login - w/ form
+app.use(require('./routes/user_confirm'));  // /confirm
+app.use(require('./routes/user_logout'));   // /logout
 
 // =============================================
 // SERVER

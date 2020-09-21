@@ -49,7 +49,7 @@ router.post("/login", async (req, res) => {
 
         req.flash('success', `Welcome back! ${foundUser.username}`);
         res.cookie('auth', authToken, authTokenOptions)
-        res.redirect('/')
+        res.redirect('/blogs')
     }
 
     catch (error) {

@@ -9,7 +9,7 @@ const User = require("../schema").User;
 // =============================================
 // POST - process email confirmation
 // =============================================
-router.post("/confirm", async (req, res) => {
+router.get("/confirm", async (req, res) => {
     try {
         const { email, token } = req.query;
 
@@ -23,14 +23,15 @@ router.post("/confirm", async (req, res) => {
             throw new Error('Invalid Token');
         }
 
+        // since i used find it will return an array of documents
         const foundUser = await User.find({ email });
 
-        if (!foundUser) {
+        if (!foundUser.length) {
             throw new Error('No User Found');
         }
 
-        foundUser.isEmailConfirmed = true;
-        await foundUser.save();
+        foundUser[0].isEmailConfirmed = true;
+        await foundUser[0].save();
 
         req.flash('success', `Success!, Please login and start blogging`);
         res.redirect('/login')

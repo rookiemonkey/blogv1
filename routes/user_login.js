@@ -3,12 +3,13 @@
 // =============================================
 const router = require("express")();
 const bcrypt = require('bcrypt');
+const isEmail = require('validator/lib/isEmail');
 const User = require("../schema").User;
 
 // =============================================
 // GET - login form
 // =============================================
-router.get("/signup", (req, res) => {
+router.get("/login", (req, res) => {
     res.render('login')
 });
 

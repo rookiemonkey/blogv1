@@ -7,22 +7,23 @@
     they case run javascript using script tags
     see your bookmark on colts course section 31 </p> -->
     <% if (info.length > 0) { %>
-        <div>
-            <div class="ui blue message"><%= info %></div>
-        </div>
+    <div>
+        <div class="ui blue message"><%= info %></div>
+    </div>
     <% } %>
 
     <% if (error.length > 0) { %>
-        <div>
-            <div class="ui red message"><%= error %></div>
-        </div>
+    <div>
+        <div class="ui red message"><%= error %></div>
+    </div>
     <% } %>
 
     <div class="ui segment">
         <h1><strong>"<%= foundPost.title %>"</strong></h1>
         <h3><em><%= foundPost.created.toDateString() %> <%= moment(foundPost.created).fromNow() %> </em></h3>
     </div>
-    <img class="ui medium rounded left floated image" src="<%= foundPost.image  %>" alt="<%= foundPost.title %>">
+    <img class="ui medium rounded left floated image" src="<%= foundPost.image  %>" alt="<%= foundPost.title %>"
+        onerror="this.onerror=null;this.src='<%= errorImage %>'">
     <p><%- foundPost.body %></p>
 
     <div id="buttonsContainer">

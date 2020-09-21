@@ -6,7 +6,7 @@ const router = express();
 const database = require("../schema");
 const moment = require("moment");
 const Post = database.Post;
-const expressSanitizer = require("express-sanitizer");
+const errorImage = require('../images/error-base64');
 
 // =============================================
 // INDEX - get all blogs
@@ -29,7 +29,9 @@ router.get('/blogs', (req, res) => {
 
             res.render("getBlogs", {
                 blogs: foundBlogs,
-                moment: moment, next: 2
+                moment: moment,
+                next: 2,
+                errorImage,
             });
 
         })
@@ -51,7 +53,9 @@ router.get('/blogs', (req, res) => {
 
             res.render("getBlogs", {
                 blogs: foundBlogs,
-                moment: moment, next: parseInt(page) + 1
+                moment: moment,
+                next: parseInt(page) + 1,
+                errorImage
             });
 
         })

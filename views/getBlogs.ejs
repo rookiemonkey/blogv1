@@ -27,7 +27,8 @@
     <% blogs.forEach(post => { %>
     <article class="item">
         <div class="image">
-            <img src="<%= post.image %>" class="ui medium rounded" alt="<%= post.title %>">
+            <img src="<%= post.image %>" class="ui medium rounded" alt="<%= post.title %>"
+                onerror="this.onerror=null;this.src='<%= errorImage %>'">
         </div>
         <div class="content">
             <a class="header"><%= post.title %></a>

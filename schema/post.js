@@ -8,10 +8,22 @@ const mongoose = require('mongoose');
 // POST SCHEMA
 // =============================================
 const postSchema = mongoose.Schema({
-    title: String,
-    image: String,
-    body: String,
-    created: {type: Date, default: Date()}
+    title: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    body: {
+        type: String,
+        required: true
+    },
+    created: {
+        type: Date,
+        default: Date()
+    }
 });
 
 const Post = mongoose.model("Post", postSchema);

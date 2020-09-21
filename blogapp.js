@@ -8,7 +8,6 @@ const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const expressSanitizer = require("express-sanitizer");
 
@@ -45,6 +44,9 @@ app.use(require('./routes/postBlog'));   // /blogs/new -- w/ form
 app.use(require('./routes/getBlog'));    // /blogs/:id
 app.use(require('./routes/updateBlog')); // /blogs/edit/:id - w/ form
 app.use(require('./routes/deleteBlog')); // /blogs/delete/:id
+app.use(require('./routes/user_signup'));// /signup - w/ form
+app.use(require('./routes/user_login')); // /login - w/ form
+app.use(require('./routes/user_confirm'))// /confirm
 
 // =============================================
 // SERVER

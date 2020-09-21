@@ -25,3 +25,4 @@ mongoose.connection.on("open", () => {
 // EXPORTS
 // =============================================
 module.exports.Post = require('./post');
+module.exports.User = require('./user');

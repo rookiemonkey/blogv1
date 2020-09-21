@@ -1,6 +1,6 @@
 <%- include("partials/header") %>
 
-<section id="formContainerBox" class="ui very padded">
+<section id="formContainerNoSessionBox" class="ui very padded">
 
     <% if (info.length > 0) { %>
     <div>
@@ -20,8 +20,11 @@
     </div>
     <% } %>
 
-
     <form id="formContainerForm" class="ui form" action="/signup" method="POST">
+
+        <div class="field">
+            <h1>Signup</h1>
+        </div></br>
 
         <div class="field required">
             <label for="Username">Username</label>

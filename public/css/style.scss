@@ -1,0 +1,158 @@
+// body height, shows white below footer
+body, html {
+    height: fit-content
+}
+
+// index/home page
+section#blogPosts {
+    min-height: 100vh;
+    margin: 8% 15%;
+
+
+    div.ui, div.label {
+        background-color: transparent !important;
+    }
+
+    div.navigation-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    article.item {
+        div.content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        div.extra > a {
+            float: right;
+        }
+    }
+}
+
+// viewed posts
+section#viewedPostContainer {
+    min-height: 90vh;
+    border-color: transparent;
+    margin: 80px 0px;
+    padding: 0px 15%;
+
+    div {
+        h1, h3 {
+            margin: 0px;
+        }
+
+        h3 {
+            color: grey;
+        }
+    }
+
+    p {
+        font-size: 1.4em;
+        text-align: justify;
+    }
+
+    div#buttonsContainer {
+        display: flex;
+        justify-content: flex-end;
+
+        form {
+            display: inline-block;
+        }
+    }
+}
+
+// add new post
+section#formContainerBox {
+    height: 100vh;
+    margin: 5% auto;
+
+    form#formContainerForm {
+        margin-top: 50px;
+        padding: 0 10%;
+    }
+    
+    #Label-Image {
+        display: flex;
+        align-items: center !important;
+    }
+
+    #Image-Input,
+    #Image-File {
+        width: 100% !important;
+        height: 38px !important;
+    }
+
+    #Image-Input {
+        color: gray
+    }
+
+    #Image-File {
+        padding-left: 4.5px;
+        padding-bottom: 0px;
+        padding-top: 4.5px;
+    }
+
+    #Update-Button,
+    #Default-Button {
+        width: 100% !important;
+    }
+}
+
+// login/signup
+section#formContainerNoSessionBox {
+    height: 100vh;
+    margin: 5% auto;
+
+    form#formContainerForm {
+        margin-top: 50px;
+        padding: 0 10%;
+    }
+    
+    #Label-Image {
+        display: flex;
+        align-items: center !important;
+    }
+
+    #Image-Input,
+    #Image-File {
+        width: 100% !important;
+        height: 38px !important;
+    }
+
+    #Image-Input {
+        color: gray
+    }
+
+    #Image-File {
+        padding-left: 4.5px;
+        padding-bottom: 0px;
+        padding-top: 4.5px;
+    }
+
+    #Update-Button,
+    #Default-Button {
+        width: 100% !important;
+    }
+}
+
+
+.show {
+display: block !important;
+}
+
+.hide {
+display: none !important;
+}
+
+
+// MEDIA QUERIES
+@media screen and (min-width: 950px) {
+    section#blogPosts {
+        margin: 8% 25%;
+    }
+
+    section#formContainerNoSessionBox {
+        margin: 8% 15%;
+    }
+}

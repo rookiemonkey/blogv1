@@ -15,7 +15,7 @@ router.get("/signup", (req, res) => {
         return res.redirect('/blogs')
     }
 
-    res.render('signup')
+    res.render('signup', { session: req.cookies.auth })
 });
 
 // =============================================

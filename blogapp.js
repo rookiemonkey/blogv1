@@ -20,10 +20,17 @@ app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 
 // setup flash messages
+app.use(session({
+    secret: process.env.COOKIE_SECRET,
+    name: process.env.COOKIE_NAME,
+    cookie: { maxAge: 60000 },
+    resave: true,
+    saveUninitialized: true
+}));
+
 app.use(cookieParser('keyboard cat'));
-app.use(session({ cookie: { maxAge: 60000 }}));
 app.use(flash());
-app.use( function (req, res, next) {
+app.use(function (req, res, next) {
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     res.locals.info = req.flash("info");

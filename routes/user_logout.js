@@ -9,7 +9,7 @@ const isLoggedIn = require('../middlewares/isLoggedIn');
 // =============================================
 router.get("/logout", isLoggedIn, (req, res) => {
     req.flash('success', `Succesfully logged out`);
-    res.cookie('auth', undefined, { expires: new Date(Date.now() + 10 * 1000) })
+    res.cookie('auth', '', { expires: new Date(Date.now() + 10 * 1000) })
     res.redirect('/blogs')
 });
 

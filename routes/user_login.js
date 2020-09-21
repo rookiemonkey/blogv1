@@ -10,7 +10,9 @@ const User = require("../schema").User;
 // GET - login form
 // =============================================
 router.get("/login", (req, res) => {
-    res.render('login')
+    res.render('login', {
+        session: req.cookies.auth
+    })
 });
 
 // =============================================

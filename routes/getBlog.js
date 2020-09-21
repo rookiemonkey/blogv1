@@ -21,6 +21,7 @@ router.get("/blogs/:id", (req, res) => {
                 foundPost: foundPost,
                 moment: moment,
                 errorImage,
+                session: req.cookies.auth
             });
         }
     });

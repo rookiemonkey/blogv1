@@ -32,6 +32,7 @@ router.get('/blogs', (req, res) => {
                 moment: moment,
                 next: 2,
                 errorImage,
+                session: req.cookies.auth
             });
 
         })
@@ -55,7 +56,8 @@ router.get('/blogs', (req, res) => {
                 blogs: foundBlogs,
                 moment: moment,
                 next: parseInt(page) + 1,
-                errorImage
+                errorImage,
+                session: req.cookies.auth
             });
 
         })

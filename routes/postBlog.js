@@ -20,7 +20,7 @@ cloudinary.config(setCloudinary());
 // CREATE - post a blog
 // =============================================
 router.get("/blogs/new", isLoggedIn, (req, res) => {
-    res.render("postBlog");
+    res.render("postBlog", { session: req.cookies.auth });
 });
 
 router.post("/blogs/new", isLoggedIn, upload.single('image'), async (req, res) => {

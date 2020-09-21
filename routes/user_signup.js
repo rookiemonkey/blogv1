@@ -10,7 +10,9 @@ const toEmail = require('../helpers/toEmail');
 // GET - signup form
 // =============================================
 router.get("/signup", (req, res) => {
-    res.render('signup')
+    res.render('signup', {
+        session: req.cookies.auth
+    })
 });
 
 // =============================================

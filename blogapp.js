@@ -33,7 +33,6 @@ app.use(function (req, res, next) {
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     res.locals.info = req.flash("info");
-    res.locals.isLoggedIn = req.cookies.auth;
     next();
 })
 

@@ -27,7 +27,10 @@ router.get("/blogs/edit/:id", isLoggedIn, (req, res) => {
             return res.redirect(`/blogs?page=1`);
         }
 
-        res.render('editBlog', { foundPost: foundPost })
+        res.render('editBlog', {
+            foundPost: foundPost,
+            session: req.cookies.auth
+        })
     });
 });
 

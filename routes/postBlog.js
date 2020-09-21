@@ -7,6 +7,7 @@ const multer = require('multer');
 const cloudinary = require('cloudinary');
 const database = require("../schema");
 const Post = database.Post;
+const isLoggedIn = require('../middlewares/isLoggedIn');
 const setMulter = require("../helpers/setMulter");
 const setCloudinary = require("../helpers/setCloudinary");
 const toUpload = require("../helpers/toUpload");
@@ -18,11 +19,11 @@ cloudinary.config(setCloudinary());
 // =============================================
 // CREATE - post a blog
 // =============================================
-router.get("/blogs/new", (req, res) => {
+router.get("/blogs/new", isLoggedIn, (req, res) => {
     res.render("postBlog");
 });
 
-router.post("/blogs/new", upload.single('image'), async (req, res) => {
+router.post("/blogs/new", isLoggedIn, upload.single('image'), async (req, res) => {
     const uploaded = await toUpload(cloudinary, req);
     const sanitizedTitle = req.sanitize(req.body.blog.title);
     const sanitizedDetails = req.sanitize(req.body.blog.details);

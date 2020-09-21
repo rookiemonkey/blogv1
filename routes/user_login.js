@@ -37,7 +37,7 @@ router.post("/login", async (req, res) => {
             throw new Error('Invalid Email/Password')
         }
 
-        const authToken = foundUser.generateToken();
+        const authToken = await foundUser.generateToken();
         const authTokenOptions = {};
 
         authTokenOptions.expires = new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE_TIME * 24 * 60 * 60 * 1000);
@@ -51,7 +51,7 @@ router.post("/login", async (req, res) => {
         res.cookie('auth', authToken, authTokenOptions)
         res.redirect('/')
     }
-    
+
     catch (error) {
         req.flash('error', `Something went wrong. ${error.message}`);
         res.redirect('/login')

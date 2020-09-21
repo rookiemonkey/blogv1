@@ -23,7 +23,7 @@ router.get("/blogs/new", (req, res) => {
 });
 
 router.post("/blogs/new", upload.single('image'), async (req, res) => {
-    const uploaded = await toUpload(cloudinary, req).then(u => { return u.secure_url });
+    const uploaded = await toUpload(cloudinary, req);
     const sanitizedTitle = req.sanitize(req.body.blog.title);
     const sanitizedDetails = req.sanitize(req.body.blog.details);
     Post.create({

@@ -25,7 +25,7 @@ router.post("/login", async (req, res) => {
             throw new Error('Invalid Email/Password')
         }
 
-        const foundUser = await User.find({ email });
+        const [foundUser] = await User.find({ email });
 
         if (!foundUser.isEmailConfirmed) {
             throw new Error('Please check your email and confirm your account first')
@@ -49,12 +49,12 @@ router.post("/login", async (req, res) => {
 
         req.flash('success', `Welcome back! ${foundUser.username}`);
         res.cookie('auth', authToken, authTokenOptions)
-        res.redirect('/signup')
+        res.redirect('/')
     }
-
+    
     catch (error) {
         req.flash('error', `Something went wrong. ${error.message}`);
-        res.redirect('/signup')
+        res.redirect('/login')
     }
 });
 

@@ -1,0 +1,40 @@
+<%- include("partials/header") %>
+
+<section id="formContainerBox" class="ui very padded">
+
+    <% if (info.length > 0) { %>
+    <div>
+        <div class="ui blue message"><%= info %></div>
+    </div>
+    <% } %>
+
+    <% if (success.length > 0) { %>
+    <div>
+        <div class="ui positive message"><%= success %></div>
+    </div>
+    <% } %>
+
+    <% if (error.length > 0) { %>
+    <div>
+        <div class="ui red message"><%= error %></div>
+    </div>
+    <% } %>
+
+
+    <form id="formContainerForm" class="ui form" action="/login" method="POST">
+
+        <div class="field required">
+            <label for="Email Address">Email Address</label>
+            <input type="email" name="email" placeholder="Email Address" autocomplete="off" required>
+        </div>
+
+        <div class="field required">
+            <label for="Password">Password</label>
+            <input type="password" name="password" placeholder="Password" autocomplete="off" required>
+        </div>
+
+        <button class="ui positive basic button" type='submit'>Sign up</button>
+    </form>
+</section>
+
+<%- include("partials/footer") %>

@@ -24,14 +24,14 @@ router.get("/confirm", async (req, res) => {
         }
 
         // since i used find it will return an array of documents
-        const foundUser = await User.find({ email });
+        const [foundUser] = await User.find({ email });
 
-        if (!foundUser.length) {
+        if (!foundUser) {
             throw new Error('No User Found');
         }
 
-        foundUser[0].isEmailConfirmed = true;
-        await foundUser[0].save();
+        foundUser.isEmailConfirmed = true;
+        await foundUser.save();
 
         req.flash('success', `Success!, Please login and start blogging`);
         res.redirect('/login')

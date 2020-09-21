@@ -6,7 +6,7 @@ const router = express();
 const database = require("../schema");
 const moment = require("moment");
 const Post = database.Post;
-const errorImage = require('../images/error-base64');
+const errorImage = require('../public/images/error-base64');
 
 // =============================================
 // INDEX - get all blogs

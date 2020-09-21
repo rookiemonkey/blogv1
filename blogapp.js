@@ -40,11 +40,11 @@ app.use(function (req, res, next) {
 // =============================================
 // RESTFUL ROUTES
 // =============================================
-app.use(require('./public/routes/getBlogs'));   // /blogs
-app.use(require('./public/routes/postBlog'));   // /blogs/new -- w/ form
-app.use(require('./public/routes/getBlog'));    // /blogs/:id
-app.use(require('./public/routes/updateBlog')); // /blogs/edit/:id - w/ form
-app.use(require('./public/routes/deleteBlog')); // /blogs/delete/:id
+app.use(require('./routes/getBlogs'));   // /blogs
+app.use(require('./routes/postBlog'));   // /blogs/new -- w/ form
+app.use(require('./routes/getBlog'));    // /blogs/:id
+app.use(require('./routes/updateBlog')); // /blogs/edit/:id - w/ form
+app.use(require('./routes/deleteBlog')); // /blogs/delete/:id
 
 // =============================================
 // SERVER

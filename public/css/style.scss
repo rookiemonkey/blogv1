@@ -153,11 +153,13 @@ display: none !important;
 
 // MEDIA QUERIES
 @media screen and (min-width: 950px) {
-    section#blogPosts {
-        margin: 8% 25%;
-    }
-
     section#formContainerNoSessionBox {
         margin: 8% 15%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    section#blogPosts {
+        margin-top: 60px;
     }
 }
